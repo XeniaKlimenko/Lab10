@@ -250,7 +250,7 @@ inline void TList<T>::InsLast(T d)
 template<class T>
 inline void TList<T>::Ins(TListElem<T>* e, T d)
 {
-  TListElem<T>* temp = d.Clone();
+  TListElem<T>* tmp = d.Clone();
   tmp->SetNext(e->GetNext());
   tmp->SetPrev(e);
   e->GetNext()->SetPrev(tmp);
