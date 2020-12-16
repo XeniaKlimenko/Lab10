@@ -14,6 +14,7 @@ protected:
   TListElem* prev = 0;
   int count;
 public:
+  TListElem();
   TListElem(T _data);
   ~TListElem();
 
@@ -325,6 +326,13 @@ inline int TList<T>::GetCount()
   return count;
 }
 
+template<class T>
+inline TListElem<T>::TListElem()
+{
+  data = 0;
+  next = 0;
+  prev = 0;
+}
 
 template<class T>
 inline TListElem<T>::TListElem(T _data)
