@@ -1,7 +1,0 @@
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/CMakeFiles/ALL_BUILD.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/CMakeFiles/ZERO_CHECK.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/gtest/CMakeFiles/gtest.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/Polinom/CMakeFiles/Polinom.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/List/CMakeFiles/List.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/main/CMakeFiles/main.dir
-D:/Users/August/Documents/2 course programs/Lab10. Polinom/Lab10/build/test/CMakeFiles/MP2_TESTS.dir
