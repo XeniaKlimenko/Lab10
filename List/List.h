@@ -21,6 +21,8 @@ public:
   TListElem<T>* GetNext();
   TListElem<T>* GetPrev();
 
+  virtual TListElem<T>* Clone();
+
   void SetData(T _data);
   void SetNext(TListElem* _next);
   void SetPrev(TListElem* _prev);
@@ -34,7 +36,7 @@ public:
 template <class T>
 class TList
 {
-public:
+protected:
   TListElem<T>* root = 0;
   TListElem<T>* end = 0;
   int count;
@@ -71,15 +73,13 @@ public:
 template <class T1>
 ostream& operator<< (ostream& ostr, const TListElem<T1>& A)
 {
-  ostr << A.data;
-  return ostr;
+  return ostr << A.data;
 }
 
 template <class T1>
 ostream& operator>> (istream& istr, TListElem<T1>& A)
 {
-  istr >> A.data;
-  return istr;
+  return istr >> A.data;
 }
 
 template <class T1>
@@ -124,9 +124,12 @@ TList<T>::TList(TList<T>& _v)
   TListElem<T>* j = this->root;
   TListElem<T>* p = 0;
 
+  root = 0;
+  end = 0;
+
   while (i != 0)
   {
-    j = new TListElem<T>(*i);
+    j = i->Clone();
     j->SetNext(0);
     if (p != 0)
     {
@@ -134,8 +137,10 @@ TList<T>::TList(TList<T>& _v)
       j->SetPrev(p);
     }
     p = j;
+
     if (root == 0)
       root = j;
+
     end = j;
     i = i->GetNext();
   }
@@ -191,7 +196,7 @@ TList<T>& TList<T>:: operator =(TList<T>& _v)
 
   while (i != 0)
   {
-    j = new TListElem<T>(*i);
+    j = i->Clone();
     j->SetNext(0);
     if (p != 0)
     {
@@ -213,7 +218,7 @@ inline void TList<T>::InsFirst(T d)
   if (this->IsFull())
     throw logic_error("Error");
 
-  TListElem<T>* temp = new TListElem<T>(d);
+  TListElem<T>* temp = d.Clone();
   temp->SetNext(root);
   root = temp;
   if (end == 0)
@@ -229,10 +234,10 @@ inline void TList<T>::InsLast(T d)
     throw logic_error("Error");
 
   if (end == 0)
-    end = new TListElem<T>(d);
+    end = d.Clone();
   else
   {
-    TListElem<T>* temp = new TListElem<T>(d);
+    TListElem<T>* temp = d.Clone();
     end->SetNext(temp);
     end = temp;
   }
@@ -245,7 +250,7 @@ inline void TList<T>::InsLast(T d)
 template<class T>
 inline void TList<T>::Ins(TListElem<T>* e, T d)
 {
-  TListElem<T>* tmp = new TListElem<T>(d);
+  TListElem<T>* temp = d.Clone();
   tmp->SetNext(e->GetNext());
   tmp->SetPrev(e);
   e->GetNext()->SetPrev(tmp);
@@ -352,6 +357,13 @@ template<class T>
 inline TListElem<T>* TListElem<T>::GetPrev()
 {
   return prev;
+}
+
+template<class T>
+inline TListElem<T>* TListElem<T>::Clone()
+{
+  TListElem<T>* res = new TListElem<T>(*this);
+  return res;
 }
 
 template<class T>
