@@ -1,6 +1,6 @@
 #include "../gtest/gtest.h"
-#include "StackList.h"
-#include "QueueList.h"
+#include "Monom.h"
+#include "Polinom.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
